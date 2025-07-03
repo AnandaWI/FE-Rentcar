@@ -1,0 +1,24 @@
+.car {
+    background-color: #fffaf9;
+    
+  }
+
+
+.car-card {
+    transition: transform 0.3s ease;
+  }
+  
+  .car-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .slick-slide > div {
+    padding: 0px;
+  }
+  
+  @media (max-width: 576px) {
+    .car-info {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+  }

@@ -1,0 +1,124 @@
+.service {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  .mainContainer {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: nowrap;
+    flex-direction: row; /* default horizontal */
+  }
+
+  .singlePost {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+    background: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+    width: 50%; /* 2 kartu dalam 1 baris */
+
+    .imgDiv {
+      width: 100%;
+      height: 180px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      border: 4px solid goldenrod;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    .postDetails {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+
+      h3 {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+    
+      p {
+        color: #666;
+        line-height: 1.4;
+        text-align: left;
+        margin: 0;
+        font-size: 16px;
+      }
+
+      a {
+        margin-top: 1rem;
+        color: goldenrod;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+
+        .icon {
+          margin-left: 0.25rem;
+          transition: transform 0.3s ease;
+        }
+
+        &:hover .icon {
+          transform: translateX(6px);
+        }
+      }
+    }
+  }
+}
+
+/* Mode Tablet: Buat grid 2x2 */
+@media (min-width: 600px) and (max-width: 1024px) {
+  .service {
+    .mainContainer {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+      grid-template-rows: auto auto; /* 2 baris otomatis */
+      gap: 2rem;
+    }
+
+    .singlePost {
+      width: 100%; /* span full width dari grid cell */
+      align-items: flex-start;
+    }
+  }
+}
+
+/* Layar kecil: stack vertikal */
+@media (max-width: 599px) {
+  .service {
+    .mainContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      flex-wrap: nowrap;
+    }
+
+    .singlePost {
+      width: 100%;
+      align-items: flex-start;
+
+      .imgDiv {
+        height: 200px;
+      }
+
+      .postDetails {
+        margin-top: 1rem;
+
+        p {
+          text-align: left;
+        }
+      }
+    }
+  }
+}

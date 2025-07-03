@@ -1,0 +1,174 @@
+.box-search-booking .box-search {
+    border: 1px solid #f8f9fd;
+    border-radius: 15px;
+    background-color:white;
+    padding: 20px;
+    position: relative;
+    top:-60px;
+    z-index: 12;
+    margin-bottom: -50px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.box-search-booking .box-search .item-search {
+    width: 20%;
+    position: relative;
+    padding: 0px 12px;
+}
+
+.box-search-booking .box-search .item-search::before{
+    content: "";
+    position: absolute;
+    top: 1px;
+    right: 10px;
+    width: 1px;
+    height: 58px;
+    background-color: #e4e6e8;
+    display: block !important;
+}
+
+.box-search-booking .box-search .item-search-2{
+    display: inline-block;
+
+}
+
+.box-search-booking .box-search .item-search-2 
+.react-datepicker__input-container{
+    font-family: bootstrap-icons !important;
+    font-style: normal;
+    font-weight: 400 !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+}
+
+.box-search-booking .box-search .item-search-2 .react-datepicker-wrapper{
+    display: block;
+}
+
+.box-search-booking .box-search .item-search-2 
+.react-datepicker__input-container::before{
+    content: "\f214";
+    position: absolute;
+    left: 0;
+    bottom: 8px;
+    font-size: 16px;
+}
+
+
+.box-search-booking .box-search .item-search-2 
+.react-datepicker__input-container::after{
+    content: "\f282";
+    position: absolute;
+    right: 20px;
+    bottom: 8px;
+    font-size: 16px;
+}
+
+.box-search-booking .box-search .item-search-2 
+.react-datepicker-wrapper input{
+    border: none;
+    padding: 5px 40px 5px 5px;
+    padding-left: 22px !important;
+    line-height: 1.5;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    color:#666777;
+    font-family: "Poppins", sans-serif;
+}
+
+.box-search-booking .box-search .item-search-2 
+.react-datepicker-wrapper input:focus{
+    border: none;
+    outline: none;
+}
+
+.box-search-booking .box-search .item-search .item-search-label {
+    font-size: 16px;
+    line-height: 22px;
+    color: #666777;
+    font-weight: semi-bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.box-search-booking .box-search .bd-none::before{
+    display: none;
+}
+
+.box-search-booking .box-search .item-search .primaryBtn {
+    padding: 15px 32px !important;
+    font-size: 16px;
+    line-height: 26px !important;
+    align-items: center;
+    width: fit-content;
+    display: flex;
+    border:none;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.3s ease;
+    background-color: goldenrod;
+    border-radius: 10px;
+}
+.box-search-booking .box-search .item-search .primaryBtn:hover{
+    background-color: #007bff; /* warna biru saat hover */
+    color: white;
+}
+
+.box-search-booking .box-search .item-search.bd-none::before {
+    display: none !important;
+}
+
+
+@media (max-width : 1199px){
+    .box-search-booking .box-search {
+        flex-wrap: wrap;
+    }
+    .box-search-booking .box-search .item-search:last-child{
+        width: 100%;
+        justify-content: center !important;
+        padding: 20px;
+    }
+
+    .box-search-booking .box-search .item-search:last-child .primaryBtn{
+        width: 100%;
+        justify-content: center !important;
+    }
+
+    .box-search-booking .box-search .item-search{
+        width: 25%;
+    }
+}
+
+.react-time-picker__inputGroup input {
+    font-weight: bold;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    color: #666777;
+    outline: none;
+}
+
+@media (max-width : 991px){
+    .box-search-booking .box-search .item-search{
+        width: 50%;
+        position: relative;
+        padding: 0px 27px;
+        margin-bottom: 15px;
+    }
+    .box-search-booking .box-search .item-search:nth-child(2)::before{
+        display: none;
+    }
+}
+
+@media (max-width : 575px){
+    .box-search-booking .box-search .item-search{
+        width: 100%;
+        border-bottom: 1px solid #666777;
+        padding: 10px;
+    }
+    .box-search-booking .box-search .item-search::before{
+        display: none;
+    }
+}

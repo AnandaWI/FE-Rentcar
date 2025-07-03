@@ -1,0 +1,64 @@
+.call_us {
+    background: url("../../assets/images/contact/mobil.jpg");
+    padding: 88px 0px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    z-index: 1;
+}
+
+.call_us .title {
+    color: white;
+    font-style: italic;
+}
+
+.call_us .heading {
+    font-size: 50px;
+    color: white;
+    line-height: 58px;
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 0 20px 0;
+}
+
+.call_us p {
+    font-size: 18px;
+    color: white;
+    line-height: 20px;
+}
+
+.call_us .secondary_btn {
+    background: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+    border: 3px solid white;
+    padding: 12px 8px;
+    text-decoration: none  ;
+    border-radius: 10px;
+
+}
+
+.call_us .secondary_btn:hover {
+    color: goldenrod;
+    border: 3px solid goldenrod;
+   
+}
+
+.bounce {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}

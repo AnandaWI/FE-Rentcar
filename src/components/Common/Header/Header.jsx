@@ -1,0 +1,42 @@
+import React from 'react';
+import { Container, Nav, Navbar, Row } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import '../Header/header.css'
+
+const Header = () => {
+  return (
+    <header className="header-section">
+      <Container>
+        <Row>
+          <Navbar expand="lg" className="bg-body-tertiary mb-3 shadow">
+            <Navbar.Brand as={NavLink} to="/" className="fw-bold fst-italic custom-navbrand">
+              AEM Rentcar
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" className="custom-toggle" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="ms-auto text-center">
+                <Nav.Link href='#home' className="mx-lg-2 custom-navlink">
+                  Home
+                </Nav.Link>
+                <Nav.Link href='#booking'  className="mx-lg-2 custom-navlink">
+                  Booking
+                </Nav.Link>
+                <Nav.Link href='#cars' className="mx-lg-2 custom-navlink">
+                  Cars
+                </Nav.Link>
+                <Nav.Link href='#service' className="mx-lg-2 custom-navlink">
+                  Service
+                </Nav.Link>
+                <Nav.Link href='#contact'  className="mx-lg-2 custom-navlink">
+                  Contact Us
+                </Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+        </Row>
+      </Container>
+    </header>
+  );
+};
+
+export default Header;

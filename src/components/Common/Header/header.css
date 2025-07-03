@@ -1,0 +1,53 @@
+header {
+    top: 20px;
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+}
+.navbar {
+    border-radius: 16px;
+    border: 2px solid goldenrod;
+}
+header .navbar .navbar-toggler.custom-toggle {
+    border: none;
+    font-size: 1.25rem;
+    color: white;
+}
+header .navbar .navbar-toggler.custom-toggle:focus {
+    box-shadow: none;
+    font-size: 1.25rem;
+}
+header .navbar .navbar-brand.custom-navbrand{
+    font-size: 30px;
+    color: goldenrod;
+    margin-left: 15px;
+}
+header .navbar .nav-link.custom-navlink {
+    position: relative; /* wajib agar ::before bisa diposisikan relatif ke link */
+    font-weight: 600;
+    display: inline-block;
+    padding-bottom: 4px; /* beri ruang untuk garis bawah */
+    color: #666777; /* opsional, agar warna teks jelas */
+    text-decoration: none;
+  }
+header .navbar .nav-link.custom-navlink:hover, .custom-navlink.active {
+    color: black;
+}
+
+@media (min-width: 991px) {
+header .navbar .nav-link.custom-navlink::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: goldenrod;
+        transition: width 0.3s ease-in-out;
+      }
+      
+header .navbar .nav-link.custom-navlink:hover::before {
+        width: 80%;
+      }
+}
