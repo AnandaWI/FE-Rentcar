@@ -2,11 +2,22 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 import { FaUsers, FaCogs } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 const CarCard = ({ car }) => {
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    navigate(`/cars/${car.id}`)
+  }
+
   return (
     <div className="px-1">
-      <Card className="car-card shadow-sm border-0 rounded-4 overflow-hidden h-100">
+      <Card 
+        className="car-card shadow-sm border-0 rounded-4 overflow-hidden h-100" 
+        onClick={handleClick}
+        style={{ cursor: 'pointer' }}
+      >
         <Card.Img
           src={car.image}
           alt={car.name}

@@ -62,7 +62,7 @@ const Service = () => {
 
                 <div className='postDetails'>
                   <p>{desc}</p>
-                  <a href="#" className='icon'>
+                  <a href={`/service/${id}`} className='icon'>
                     Lihat Detail <BsArrowRightShort />
                   </a>
                 </div>

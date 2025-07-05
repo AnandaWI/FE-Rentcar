@@ -6,7 +6,7 @@ header {
 }
 .navbar {
     border-radius: 16px;
-    border: 2px solid goldenrod;
+    /* border: 2px solid goldenrod; */
 }
 header .navbar .navbar-toggler.custom-toggle {
     border: none;

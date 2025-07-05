@@ -1,0 +1,50 @@
+.car-images .card {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .car-images .card:hover {
+    transform: scale(1.02);
+  }
+  
+  .car-images .card-img {
+    transition: transform 0.5s ease;
+  }
+  
+  .car-images .card:hover .card-img {
+    transform: scale(1.1);
+  }
+  
+  .car-info .text-primary {
+    color: goldenrod !important;
+  }
+  
+  .car-features li::before {
+    content: '•';
+    color: goldenrod !important;
+    font-size: 1.5rem;
+    line-height: 1;
+    margin-right: 0.5rem;
+  }
+
+  .mt-6 {
+    margin-top: 5rem !important;
+  }
+  
+  
+  @media (max-width: 991.98px) {
+    .car-images {
+      margin-bottom: 2rem;
+    }
+    
+    .car-price {
+      margin-top: 2rem !important;
+    }
+  }
+  
+  @media (max-width: 575.98px) {
+    .car-info {
+      flex-direction: column;
+      gap: 1rem !important;
+    }
+  }
