@@ -1,0 +1,135 @@
+.selected-car {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.car-features span {
+    display: inline-block;
+    margin-right: 20px;
+    color: #666;
+}
+
+.car-features i {
+    margin-right: 5px;
+}
+
+.booking-details {
+    background-color: #f8f9fa;
+    border-left: 4px solid goldenrod;
+}
+
+.booking-title {
+    color: goldenrod;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.booking-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.info-item i {
+    font-size: 1.2rem;
+    margin-top: 3px;
+     color: goldenrod ;
+}
+
+.info-item div {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 2px;
+}
+
+.info-value {
+    font-weight: 500;
+    color: #212529;
+}
+
+@media (min-width: 768px) {
+    .booking-info {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+.driver-card {
+    transition: transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.driver-card:hover {
+    transform: translateY(-5px);
+}
+
+.driver-photo {
+    position: relative;
+    text-align: center;
+}
+
+.driver-photo img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.status-badge {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-badge.available {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-badge.unavailable {
+    background-color: #dc3545;
+    color: white;
+}
+
+.driver-name {
+    text-align: center;
+    margin: 15px 0;
+    font-weight: 600;
+}
+
+.driver-info p {
+    margin-bottom: 8px;
+    color: #666;
+}
+
+.driver-info i {
+    margin-right: 8px;
+    color: goldenrod;
+}
+
+@media (max-width: 768px) {
+    .driver-card {
+        margin-bottom: 20px;
+    }
+    
+    .selected-car img {
+        margin-bottom: 15px;
+    }
+}

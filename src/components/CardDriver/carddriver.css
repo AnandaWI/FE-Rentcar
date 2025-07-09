@@ -1,0 +1,56 @@
+.driver-card {
+    transition: transform 0.2s;
+}
+
+.driver-card:hover {
+    transform: translateY(-5px);
+}
+
+.driver-photo {
+    position: relative;
+    text-align: center;
+}
+
+.driver-photo img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.status-badge {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-badge.available {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-badge.unavailable {
+    background-color: #dc3545;
+    color: white;
+}
+
+.driver-name {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.driver-info p {
+    margin-bottom: 8px;
+    color: #6c757d;
+}
+
+.driver-info i {
+    margin-right: 8px;
+    color: goldenrod;
+}

@@ -14,92 +14,116 @@ import "slick-carousel/slick/slick-theme.css";
 
 const carsVIP = [
   {
+    id: 1,
     name: "Hiace",
     seat: 15,
     transmission: "Manual",
     price: 850000,
-    image: car1
+    image: car1,
+    type: "VIP"
   },
   {
+    id: 2,
     name: "Alphard",
     seat: 7,
     transmission: "Matic",
     price: 1500000,
-    image: car2
+    image: car2,
+    type: "VIP"
   },
   {
-    name: "Fortuner",
-    seat: 7,
+    id: 3,
+    name: "Hiace",
+    seat: 15,
     transmission: "Manual",
-    price: 1200000,
-    image: car3
+    price: 850000,
+    image: car1,
+    type: "VIP"
   },
   {
-    name: "Innova",
+    id: 4,
+    name: "Alphard",
     seat: 7,
     transmission: "Matic",
-    price: 950000,
-    image: car4
+    price: 1500000,
+    image: car2,
+    type: "VIP"
   },
   {
-    name: "Pajero",
-    seat: 7,
-    transmission: "Matic",
-    price: 950000,
-    image: car5
+    id: 5,
+    name: "Hiace",
+    seat: 15,
+    transmission: "Manual",
+    price: 850000,
+    image: car1,
+    type: "VIP"
   },
   {
-    name: "Zenix",
+    id: 6,
+    name: "Alphard",
     seat: 7,
     transmission: "Matic",
-    price: 950000,
-    image: car6
+    price: 1500000,
+    image: car2,
+    type: "VIP"
   },
 ]
 
 const carsReguler = [
-    {
-      name: "Hiace",
-      seat: 15,
-      transmission: "Manual",
-      price: 850000,
-      image: car1
-    },
-    {
-      name: "Alphard",
-      seat: 7,
-      transmission: "Manual",
-      price: 1500000,
-      image: car2
-    },
-    {
-      name: "Fortuner",
-      seat: 7,
-      transmission: "Manual",
-      price: 1200000,
-      image: car3
-    },
-    {
-      name: "Innova",
-      seat: 7,
-      transmission: "Matic",
-      price: 950000,
-      image: car4
-    },
-    {
-      name: "Pajero",
-      seat: 7,
-      transmission: "Matic",
-      price: 950000,
-      image: car5
-    },
-    {
-      name: "Zenix",
-      seat: 7,
-      transmission: "Matic",
-      price: 950000,
-      image: car6
-    },
+  {
+    id: 7,
+    name: "Hiace",
+    seat: 15,
+    transmission: "Manual",
+    price: 850000,
+    image: car1,
+    type: "Reguler"
+  },
+  {
+    id: 8,
+    name: "Alphard",
+    seat: 7,
+    transmission: "Manual",
+    price: 1500000,
+    image: car2,
+    type: "Reguler"
+  },
+  {
+    id: 9,
+    name: "Hiace",
+    seat: 15,
+    transmission: "Manual",
+    price: 850000,
+    image: car1,
+    type: "Reguler"
+  },
+  {
+    id: 10,
+    name: "Alphard",
+    seat: 7,
+    transmission: "Manual",
+    price: 1500000,
+    image: car2,
+    type: "Reguler"
+  },
+  {
+    id: 11,
+    name: "Hiace",
+    seat: 15,
+    transmission: "Manual",
+    price: 850000,
+    image: car1,
+    type: "Reguler"
+  },
+  {
+    id: 12,
+    name: "Alphard",
+    seat: 7,
+    transmission: "Manual",
+    price: 1500000,
+    image: car2,
+    type: "Reguler"
+  },
   ]
 
 const sliderSettings = {

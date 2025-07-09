@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Banner from '../../components/Banner/Banner'
 import BookingSearch from '../../components/BookingSearch/BookingSearch'
 import Features from '../../components/Features/Features'
@@ -7,17 +7,42 @@ import { Container, Row, Col } from 'react-bootstrap'
 import '../Home/home.css'
 import Header from '../../components/Common/Header/Header'
 import Service from '../../components/Service/Service'
+import { useLocation } from 'react-router-dom'
 
 const Home = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Cek jika ada hash di URL
+    if (location.hash) {
+      // Hapus karakter # dari hash
+      const id = location.hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        // Tambahkan setTimeout untuk memastikan scroll berjalan setelah render
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
+
   return (
     <>
     <Header />
-    <Banner />
-    <BookingSearch />
+    <section id="home">
+      <Banner />
+    </section>
+    <section id="booking">
+      <BookingSearch />
+    </section>
     <Features />
-    <Cars />
-
-    <Service />
+    <section id="cars">
+      <Cars />
+    </section>
+    <section id="service">
+      <Service />
+    </section>
 
     <section id='contact' className="call_us">
       <Container>
@@ -38,9 +63,6 @@ const Home = () => {
         </Row>
       </Container>
     </section>
-
-    
-
     </>
   )
 }
