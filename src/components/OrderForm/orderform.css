@@ -1,0 +1,124 @@
+.order-form-modal .modal-content {
+    background-color: #ffffff;
+    color: #333333;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.order-form-modal .modal-body {
+    padding: 2rem;
+}
+
+.order-form-modal h4 {
+    color: #333333;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.order-form-modal h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: #3498db;
+    border-radius: 3px;
+}
+
+.form-control-dark {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    color: #333333;
+    padding: 15px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.form-control-dark:hover {
+    background-color: #ffffff;
+    border-color: #3498db;
+}
+
+.form-control-dark:focus {
+    background-color: #ffffff;
+    color: #333333;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    border-color: #3498db;
+    transform: translateY(-2px);
+}
+
+.form-control-dark::placeholder {
+    color: #6c757d;
+    transition: all 0.3s ease;
+}
+
+.form-control-dark:focus::placeholder {
+    opacity: 0.7;
+    transform: translateX(5px);
+}
+
+.btn {
+    padding: 12px 24px;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-secondary {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    color: #333333;
+}
+
+.btn-secondary:hover {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-group:focus-within label {
+    color: #3498db;
+}
+
+textarea.form-control-dark {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.d-flex.gap-2 {
+    gap: 1rem !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.order-form-modal .modal-content {
+    animation: fadeIn 0.5s ease-out;
+}

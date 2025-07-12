@@ -9,14 +9,19 @@
 .driver-photo {
     position: relative;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
 }
 
 .driver-photo img {
-    width: 120px;
-    height: 120px;
+   width: 150px;
+    height: 150px;
     object-fit: cover;
     border: 3px solid #f8f9fa;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 0 auto;
 }
 
 .status-badge {
@@ -43,11 +48,24 @@
 .driver-name {
     text-align: center;
     margin-bottom: 15px;
+    font-size: 1rem;
 }
 
 .driver-info p {
     margin-bottom: 8px;
     color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .driver-name {
+        font-size: 0.9rem;
+    }
+
+    .driver-info p {
+        font-size: 0.9rem;
+    }
 }
 
 .driver-info i {

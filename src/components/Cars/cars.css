@@ -15,6 +15,46 @@
   .slick-slide > div {
     padding: 0px;
   }
+
+  .slick-prev,
+.slick-next {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.slick-prev {
+    left: -20px;
+}
+
+.slick-next {
+    right: -20px;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+    background: white;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: #333;
+    opacity: 0.75;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .slick-prev {
+        left: 1px;
+    }
+
+    .slick-next {
+        right: 1px;
+    }
+}
   
   @media (max-width: 576px) {
     .car-info {

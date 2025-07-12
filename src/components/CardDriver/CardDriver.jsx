@@ -4,8 +4,7 @@ import './carddriver.css'
 
 const DriverCard = ({ driver, onSelect }) => {
     return (
-        <Col md={3} className="mb-4">
-            <Card className="driver-card h-100">
+            <Card className="driver-card h-100 mb-4">
                 <Card.Body>
                     <div className="driver-photo mb-3">
                         <img 
@@ -33,7 +32,6 @@ const DriverCard = ({ driver, onSelect }) => {
                     </button>
                 </Card.Body>
             </Card>
-        </Col>
     )
 }
 

@@ -7,6 +7,9 @@ import Header from '../../components/Common/Header/Header'
 import feature3 from "../../assets/images/feature/driver.png";
 import "./driver.css";
 import CardDriver from "../../components/CardDriver/CardDriver";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Driver = () => {
     const location = useLocation()
@@ -106,76 +109,56 @@ const Driver = () => {
         console.log('Driver terpilih:', selectedDriver)
     }
 
+    const sliderSettings = {
+        dots: false,                    // Tambahkan dots indicator
+        infinite: true,
+        autoplay: true,                // Aktifkan autoplay
+        autoplaySpeed: 5000,           // Interval 5 detik
+        speed: 500,
+        slidesToShow: 4,               // Ubah menjadi 4 untuk desktop
+        slidesToScroll: 1,
+        arrows: true,                  // Tampilkan tombol navigasi
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2,
+                    arrows: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 576,
+                settings: {
+                    slidesToShow: 1,
+                    arrows: false,      // Sembunyikan arrow di mobile
+                    dots: true
+                }
+            }
+        ]
+    }
+
     return (
         <>
             <Header />
             <Container className="mt-6 pt-4">
-                <h3 className="mb-4">Pilih Driver Profesional</h3>
-                
+                <h3>Pilih Driver Profesional</h3>
                 {/* Informasi Mobil yang Dipilih */}
-                <Card className="mb-4 selected-car">
-                    <Card.Body>
-                        <Row>
-                            <Col md={3}>
-                                <img src={car?.image} alt={car?.name} className="img-fluid rounded" />
-                            </Col>
-                            <Col md={9}>
-                                <h4>{car?.name}</h4>
-                                <div className="car-features">
-                                    <span><i className="bi bi-people"></i> {car?.seat} Kursi</span>
-                                    <span><i className="bi bi-gear"></i> {car?.transmission}</span>
-                                </div>
-                                <div className="booking-details mt-4 p-3 rounded shadow-sm">
-                                    <h5 className="booking-title mb-3">
-                                        <i className="bi bi-info-circle-fill me-2"></i>
-                                        Detail Pemesanan
-                                    </h5>
-                                    <div className="booking-info">
-                                        <div className="info-item">
-                                            <i className="bi bi-calendar-event"></i>
-                                            <div>
-                                                <span className="info-label">Tanggal</span>
-                                                <span className="info-value">{formatDate(searchParams?.tanggal)}</span>
-                                            </div>
-                                        </div>
-                                        <div className="info-item">
-                                            <i className="bi bi-clock"></i>
-                                            <div>
-                                                <span className="info-label">Jam Penjemputan</span>
-                                                <span className="info-value">{searchParams?.jamPenjemputan}</span>
-                                            </div>
-                                        </div>
-                                        <div className="info-item">
-                                            <i className="bi bi-hourglass-split"></i>
-                                            <div>
-                                                <span className="info-label">Jangka Waktu</span>
-                                                <span className="info-value">{searchParams?.jangkaWaktu}</span>
-                                            </div>
-                                        </div>
-                                        <div className="info-item">
-                                            <i className="bi bi-geo-alt"></i>
-                                            <div>
-                                                <span className="info-label">Destinasi</span>
-                                                <span className="info-value">{searchParams?.destinasi}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Card.Body>
-                </Card>
+                
 
                 {/* Daftar Driver */}
-                <Row>
-                    {drivers.map(driver => (
-                        <CardDriver 
-                            key={driver.id} 
-                            driver={driver} 
-                            onSelect={handleSelectDriver}
-                        />
-                    ))}
-                </Row>
+                <div className="driver-slider-wrapper">
+                    <Slider {...sliderSettings}>
+                        {drivers.map(driver => (
+                            <div key={driver.id}>
+                                <CardDriver 
+                                    driver={driver} 
+                                    onSelect={handleSelectDriver}
+                                />
+                            </div>
+                        ))}
+                    </Slider>
+                </div>
             </Container>
         </>
     )

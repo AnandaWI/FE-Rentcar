@@ -47,45 +47,44 @@
 
 .badge.bg-warning {
     background-color: #ffc107 !important;
-    color: #000;
+    color: #fff;
 }
 
 .badge.bg-secondary {
-    background-color: #6c757d !important;
+    background-color: green !important;
     color: #fff;
 }
 
 /* Styling untuk card mobil */
 .car-card {
-    border: none;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.car-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
 .car-card .card-img-top {
-    height: 200px;
+    height: 160px; /* Mengurangi tinggi gambar */
     object-fit: cover;
-    transition: all 0.3s ease;
-}
-
-.car-card:hover .card-img-top {
-    transform: scale(1.05);
 }
 
 .car-card .card-body {
-    padding: 20px;
+    padding: 15px; /* Mengurangi padding */
 }
 
 .car-card .card-title {
     color: #2c3e50;
     font-weight: 600;
-    margin-bottom: 15px;
+    font-size: 1rem; /* Mengurangi ukuran font judul */
+    margin-bottom: 10px; /* Mengurangi margin bottom */
+}
+
+.features {
+    display: flex;
+    gap: 10px; /* Mengurangi gap */
+    color: #6c757d;
+    font-size: 0.85rem; /* Mengurangi ukuran font fitur */
+}
+
+.car-card .card-footer {
+    padding: 10px 15px; /* Mengurangi padding footer */
 }
 
 /* Styling untuk fitur mobil */

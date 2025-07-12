@@ -51,3 +51,32 @@ header .navbar .nav-link.custom-navlink:hover::before {
         width: 80%;
       }
 }
+
+
+/* Mobile styles */
+@media (max-width: 576px) {
+    header {
+        top: 20px;
+        padding: 0 10px;
+        width: calc(100% - 40px);
+        left: 20px;
+    }
+
+    .navbar {
+        padding: 8px 12px;
+    }
+
+    header .navbar .navbar-brand.custom-navbrand {
+        font-size: 20px;
+        margin-left: 5px;
+    }
+
+    header .navbar .navbar-toggler.custom-toggle {
+        font-size: 1rem;
+    }
+
+    header .navbar .nav-link.custom-navlink {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}

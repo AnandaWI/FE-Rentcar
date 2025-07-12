@@ -19,6 +19,7 @@ const Features = () => {
     autoplaySpeed:1500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    arrows: false,
     
     responsive: [
       {

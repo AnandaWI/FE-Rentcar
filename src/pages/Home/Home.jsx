@@ -54,7 +54,7 @@ const Home = () => {
               Jangan lewatkan kenyamanan yang Anda dan keluarga layak dapatkan!</p>
             </Col>
             <Col md={4} className='text-center mt-3 mt-md-0'>
-              <a href='https://wa.me/6285900201214?text=Halo%20saya%20ingin%20memesan%20mobil'
+              <a href='https://wa.me/6281904189551?text=Halo%20saya%20ingin%20memesan%20mobil'
               className='secondary_btn bounce' rel='no'
               >
                 Contact Us !

@@ -133,3 +133,44 @@
         margin-bottom: 15px;
     }
 }
+
+.driver-slider-wrapper {
+    margin: 0 -15px;
+}
+
+.driver-slider-wrapper .slick-track {
+    display: flex !important;
+}
+
+.driver-slider-wrapper .slick-slide {
+    height: inherit !important;
+    padding: 0 15px;
+}
+
+.driver-slider-wrapper .slick-slide > div {
+    height: 100%;
+}
+
+/* Tombol navigasi slider */
+.driver-slider-wrapper .slick-prev,
+.driver-slider-wrapper .slick-next {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.driver-slider-wrapper .slick-prev {
+    left: -20px;
+}
+
+.driver-slider-wrapper .slick-next {
+    right: -20px;
+}
+
+.driver-slider-wrapper .slick-prev:before,
+.driver-slider-wrapper .slick-next:before {
+    color: #333;
+}

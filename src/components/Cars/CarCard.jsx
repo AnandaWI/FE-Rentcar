@@ -22,7 +22,7 @@ const CarCard = ({ car }) => {
           src={car.image}
           alt={car.name}
           className="img-fluid"
-          style={{ objectFit: 'cover', height: '200px', width: '100%' }}
+          style={{ objectFit: 'cover'}}
         />
         <Card.Body className="p-3 d-flex flex-column justify-content-between">
           <div>
@@ -34,11 +34,8 @@ const CarCard = ({ car }) => {
             <div className="text-muted d-flex align-items-center gap-1 flex-shrink-0" style={{ fontSize: '1rem' }}>
               <FaUsers /> {car.seat}
             </div>
-            <div className="text-muted d-flex align-items-center gap-1 flex-shrink-0" style={{ fontSize: '1rem' }}>
-              <FaCogs /> {car.transmission}
-            </div>
             <div className="car-price d-flex align-items-center gap-1 fw-semibold flex-shrink-0">
-              <span>Rp {car.price.toLocaleString()}</span>
+              <span>Mulai Rp {car.price.toLocaleString()}</span>
               <span style={{ fontSize: '0.96rem'}}>/hari</span>
             </div>
           </div>
