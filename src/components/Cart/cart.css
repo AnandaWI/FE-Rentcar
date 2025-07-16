@@ -172,3 +172,48 @@
 .cart-footer .btn {
     min-width: 120px;
 }
+
+
+/* Slider styling */
+.driver-selection-modal .slick-slide {
+    padding: 10px;
+}
+
+.driver-selection-modal .slick-prev,
+.driver-selection-modal .slick-next {
+    z-index: 1;
+}
+
+.driver-selection-modal .slick-prev {
+    left: -5px;
+}
+
+.driver-selection-modal .slick-next {
+    right: -5px;
+}
+
+.driver-selection-modal .slick-dots {
+    bottom: -30px;
+}
+
+.driver-selection-modal .modal-body {
+    padding-bottom: 50px;
+}
+
+.driver-card.selected {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.driver-card.selected::after {
+    content: "Sudah Dipilih";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    z-index: 1;
+}

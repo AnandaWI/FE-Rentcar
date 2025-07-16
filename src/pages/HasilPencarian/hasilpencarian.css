@@ -25,10 +25,9 @@
 }
 
 .search-item small {
-    color: #6c757d;
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-transform: uppercase;
+    color: goldenrod !important;
+    font-size: 0.9rem;
+    font-weight: bold;
     letter-spacing: 0.5px;
 }
 
@@ -37,6 +36,7 @@
     font-weight: 500;
     margin-top: 5px;
 }
+
 
 /* Styling untuk badge */
 .badge {

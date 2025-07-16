@@ -33,49 +33,21 @@ const Footer = () => {
     <footer className="pt-5">
       <Container>
         <Row>
-          <Col md="3" sm="12" className="quick_link mt-3 mt-md-0 ">
-            <h4 className="mt-lg-0 mt-sm-3">Company </h4>
-            <ListGroup variant="flush">
-              <ListGroup.Item>
-                <NavLink to="/">About Us</NavLink>
-              </ListGroup.Item>
-              <ListGroup.Item>
-              <NavLink to="/">News</NavLink>
-              </ListGroup.Item>
-              <ListGroup.Item>
-              <NavLink to="/">Faq</NavLink>
-              </ListGroup.Item>
-             
-            </ListGroup>
-          </Col>
-          <Col md="3" sm="12" className="quick_link mt-3 mt-md-0 ">
-          <h4 className="mt-lg-0 mt-sm-3">Explore </h4>
-          <ListGroup variant="flush">
-              <ListGroup.Item>
-                <NavLink to="/"> Faq</NavLink>
-              </ListGroup.Item>
-              <ListGroup.Item>
-              <NavLink to="/">Tour Listings</NavLink>
-              </ListGroup.Item>
-              <ListGroup.Item>
-              <NavLink to="/"> Destination</NavLink>
-              </ListGroup.Item>
-             
-            </ListGroup>
+          <Col md="6" sm="12" className="quick_link mt-3 mt-md-0 ">
+            <h3 className="mt-lg-0 mt-sm-3 fst-italic">AEM RentCar </h3>
+            <p>
+              Kami adalah perusahaan rental mobil yang berdedikasi untuk memberikan solusi transportasi terbaik bagi pelanggan di berbagai kebutuhan perjalanan. Sejak awal berdiri, kami berkomitmen menghadirkan layanan berkualitas tinggi dengan armada kendaraan yang terawat dan beragam, mulai dari mobil ekonomis hingga kendaraan premium.
+            </p>
           </Col>
           <Col md="3" sm="12" className="quick_link mt-3 mt-md-0 ">
           <h4 className="mt-lg-0 mt-sm-3">Quick Link </h4>
           <ListGroup variant="flush">
               <ListGroup.Item>
-                <NavLink to="/"> Home</NavLink>
+                <NavLink to="/#home"> Home</NavLink>
               </ListGroup.Item>
               <ListGroup.Item>
-              <NavLink to="/">About Us </NavLink>
+              <NavLink to="/#booking">Booking </NavLink>
               </ListGroup.Item>
-              <ListGroup.Item>
-              <NavLink to="/"> Contact Us </NavLink>
-              </ListGroup.Item>
-             
             </ListGroup>
           </Col>
           <Col md="3" sm="12" className="location mt-3 mt-md-0 ">

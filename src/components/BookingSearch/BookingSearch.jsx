@@ -83,16 +83,14 @@ const BookingSearch = () => {
                         </div>
                         <div className='item-search'>
                             <CustomDropdown
-                                label="Jangka Waktu"
-                                onSelect={selectedJangkaWaktu}
+                                label="Destinasi"
+                                onSelect={selectedDestinasi}
                                 options={[
-                                  "1 Hari",
-                                  "2 Hari",
-                                  "3 Hari",
-                                  "4 Hari",
-                                  "5 Hari",
-                                  "6 Hari",
-                                  "7 Hari",
+                                  "Semarang-Solo",
+                                  "Semarang-Jogja",
+                                  "Semarang-Jakarta",
+                                  "Semarang-Bandung",
+                                  "Semarang-Surabaya",
                                 ]}
                             />
                         </div>
@@ -108,14 +106,16 @@ const BookingSearch = () => {
                         </div>
                         <div className='item-search'>
                             <CustomDropdown
-                                label="Destinasi"
-                                onSelect={selectedDestinasi}
+                                label="Jangka Waktu"
+                                onSelect={selectedJangkaWaktu}
                                 options={[
-                                  "Semarang-Solo",
-                                  "Semarang-Jogja",
-                                  "Semarang-Jakarta",
-                                  "Semarang-Bandung",
-                                  "Semarang-Surabaya",
+                                  "1 Hari",
+                                  "2 Hari",
+                                  "3 Hari",
+                                  "4 Hari",
+                                  "5 Hari",
+                                  "6 Hari",
+                                  "7 Hari",
                                 ]}
                             />
                         </div>
@@ -124,7 +124,7 @@ const BookingSearch = () => {
                                 className="primaryBtn flex-even d-flex justify-content-center"
                                 onClick={handleSearch}
                             >
-                                <i className="bi bi-search me-2"></i> Cari 
+                                <i className="bi bi-search me-2"></i> Cari Mobil
                             </Button>
                             {error && <div style={{color: 'red', marginTop: '8px'}}>{error}</div>}
                         </div>

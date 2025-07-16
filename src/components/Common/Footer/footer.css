@@ -3,6 +3,13 @@ footer {
   
   }
   
+  footer h3 {
+    font-size: 20px;
+    color: goldenrod;
+    line-height: 150%;
+    font-weight: bold;
+  }
+
   footer h4 {
     font-size: var(--subTitle);
     color: goldenrod;

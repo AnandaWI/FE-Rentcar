@@ -31,6 +31,9 @@
     margin-top: 5rem !important;
   }
   
+  .gold-text {
+    color: goldenrod;
+  }
   
   @media (max-width: 991.98px) {
     .car-images {

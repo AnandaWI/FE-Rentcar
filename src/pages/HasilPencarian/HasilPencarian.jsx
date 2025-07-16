@@ -5,6 +5,7 @@ import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
 import './hasilpencarian.css'
 import Header from '../../components/Common/Header/Header'
+import { carsVIP, carsReguler } from '../../components/Cars/Cars'
 
 const HasilPencarian = () => {
     const location = useLocation()
@@ -14,13 +15,8 @@ const HasilPencarian = () => {
         return format(new Date(date), 'dd MMMM yyyy', { locale: id })
     }
 
-    // Data mobil contoh
-    const cars = [
-        { id: 1, name: 'Toyota Hiace', seat: 16, transmission: 'Manual', price: 1500000, image: '/hiace.jpg', category: 'VIP' },
-        { id: 2, name: 'Daihatsu Luxio', seat: 7, transmission: 'Otomatis', price: 600000, image: '/hiace.jpg', category: 'Reguler' },
-        { id: 3, name: 'Suzuki Ertiga', seat: 7, transmission: 'Otomatis', price: 550000, image: '/hiace.jpg', category: 'Reguler' },
-        { id: 4, name: 'Honda CR-V', seat: 5, transmission: 'Otomatis', price: 800000, image: '/hiace.jpg', category: 'VIP' }
-    ];
+    // Menggabungkan data mobil dari Cars.jsx
+    const allCars = [...carsVIP, ...carsReguler]
 
     // Handler untuk mengubah kategori
     const handleKategoriChange = (newKategori) => {
@@ -31,7 +27,7 @@ const HasilPencarian = () => {
     }
 
     // Filter mobil berdasarkan kategori yang dipilih
-    const filteredCars = cars.filter(car => car.category.toLowerCase() === searchParams.kategori.toLowerCase())
+    const filteredCars = allCars.filter(car => car.type.toLowerCase() === searchParams.kategori.toLowerCase())
 
     return (
         <>
@@ -51,7 +47,7 @@ const HasilPencarian = () => {
                                             <p className="mb-0">{formatDate(searchParams.tanggal)}</p>
                                         </div>
                                     </Col>
-                                    <Col md={3}>
+                                    <Col md={2}>
                                         <div className="search-item">
                                             <small className="text-muted">Jam Penjemputan</small>
                                             <p className="mb-0">{searchParams.jamPenjemputan || '-'}</p>
@@ -78,7 +74,7 @@ const HasilPencarian = () => {
                                             </div>
                                         </div>
                                     </Col>
-                                    <Col md={2}>
+                                    <Col md={3}>
                                         <div className="search-item">
                                             <small className="text-muted">Destinasi</small>
                                             <p className="mb-0">{searchParams.destinasi}</p>
@@ -104,7 +100,10 @@ const HasilPencarian = () => {
                                 <Card className="car-card h-100 shadow-sm">
                                     <Card.Img variant="top" src={car.image} />
                                     <Card.Body>
-                                        <Badge bg={car.category === 'VIP' ? 'warning' : 'secondary'} className="mb-2">{car.category}</Badge>
+                                        <div className="d-flex justify-content-between align-items-start mb-2">
+                                            <Badge bg={car.type === 'VIP' ? 'warning' : 'secondary'} className="mb-2">{car.type}</Badge>
+                                            <Badge bg="primary">Tersedia {car.type === 'VIP' ? carsVIP.length : carsReguler.length} unit</Badge>
+                                        </div>
                                         <Card.Title>{car.name}</Card.Title>
                                         <div className="features mb-3">
                                             <span className="me-3"><i className="bi bi-people"></i> {car.seat} Kursi</span>
@@ -117,7 +116,10 @@ const HasilPencarian = () => {
                                     <Card.Footer className="bg-white border-top-0">
                                         <button 
                                             className="btn btn-primary w-100" 
-                                            onClick={() => window.cartButton.handleAddToCart(car, searchParams)}
+                                            onClick={() => window.cartButton.handleAddToCart(car, {
+                                                ...searchParams,
+                                                tanggal: formatDate(searchParams.tanggal)
+                                            })}
                                         >
                                             Tambah ke Keranjang
                                         </button>

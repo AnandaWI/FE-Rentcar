@@ -40,6 +40,7 @@ const Home = () => {
     <section id="cars">
       <Cars />
     </section>
+    
     <section id="service">
       <Service />
     </section>

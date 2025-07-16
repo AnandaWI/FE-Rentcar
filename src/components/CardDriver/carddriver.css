@@ -40,9 +40,13 @@
     color: white;
 }
 
+.driver-card.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
 .status-badge.unavailable {
     background-color: #dc3545;
-    color: white;
 }
 
 .driver-name {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Col, Container, Row } from 'react-bootstrap'
 import "../Cars/cars.css"
 import car1 from "../../assets/images/cars/hiace.jpg"
@@ -11,13 +11,14 @@ import Slider from "react-slick";
 import CarCard from './CarCard'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axiosInstance from '../../core/axiosinstance'
 
-const carsVIP = [
+export const carsVIP = [
   {
     id: 1,
     name: "Hiace",
     seat: 15,
-    transmission: "Manual",
+    
     price: 850000,
     image: car1,
     type: "VIP"
@@ -26,100 +27,99 @@ const carsVIP = [
     id: 2,
     name: "Alphard",
     seat: 7,
-    transmission: "Matic",
+    
     price: 1500000,
     image: car2,
     type: "VIP"
   },
   {
     id: 3,
-    name: "Hiace",
+    name: "Zenix",
     seat: 15,
-    transmission: "Manual",
+    
     price: 850000,
     image: car1,
     type: "VIP"
   },
   {
     id: 4,
-    name: "Alphard",
+    name: "Innova Reborn",
     seat: 7,
-    transmission: "Matic",
+    
     price: 1500000,
     image: car2,
     type: "VIP"
   },
   {
     id: 5,
-    name: "Hiace",
+    name: "Veloz",
     seat: 15,
-    transmission: "Manual",
+    
     price: 850000,
     image: car1,
     type: "VIP"
   },
   {
     id: 6,
-    name: "Alphard",
+    name: "CRV",
     seat: 7,
-    transmission: "Matic",
+    
     price: 1500000,
     image: car2,
     type: "VIP"
   },
 ]
 
-const carsReguler = [
+export const carsReguler = [
   {
     id: 7,
     name: "Hiace",
     seat: 15,
-    transmission: "Manual",
+    
     price: 850000,
     image: car1,
     type: "Reguler"
   },
   {
     id: 8,
-    name: "Alphard",
+    name: "Elf",
     seat: 7,
-    transmission: "Manual",
     price: 1500000,
     image: car2,
     type: "Reguler"
   },
   {
     id: 9,
-    name: "Hiace",
+    name: "Avanza",
     seat: 15,
-    transmission: "Manual",
+    
     price: 850000,
     image: car1,
     type: "Reguler"
   },
   {
     id: 10,
-    name: "Alphard",
+    name: "Innova Reborn",
     seat: 7,
-    transmission: "Manual",
+    
     price: 1500000,
     image: car2,
     type: "Reguler"
   },
   {
     id: 11,
-    name: "Hiace",
+    name: "Hiace Commuter",
     seat: 15,
-    transmission: "Manual",
+   
     price: 850000,
     image: car1,
     type: "Reguler"
   },
   {
     id: 12,
-    name: "Alphard",
+    name: "Xpander",
+
     seat: 7,
-    transmission: "Manual",
     price: 1500000,
     image: car2,
     type: "Reguler"
@@ -151,6 +151,21 @@ const sliderSettings = {
   }
 
   const Cars = () => {
+    const [carVIP, setCarVIP] = useState([])
+    const [carReguler, setCarReguler] = useState([])
+
+    useEffect(() => {
+      const fetchCar = async () => {
+        const responseCarReguler = await axiosInstance.get('/api/guest/cars?category_id=2')
+        setCarReguler(responseCarReguler.data.data || [])
+        
+        const responseCarVIP = await axiosInstance.get('/api/guest/cars?category_id=1')
+        setCarVIP(responseCarVIP.data.data || [])
+      }
+
+      fetchCar()
+    }, [])
+
     return (
       <section id="cars" className='car py-5'>
         <Container>
@@ -166,7 +181,7 @@ const sliderSettings = {
             <Col><h2 className="fw-semibold fst-italic">Unit VIP</h2></Col>
           </Row>
           <Slider {...sliderSettings}>
-            {carsVIP.map((car, index) => (
+            {carVIP.map((car, index) => (
               <CarCard key={index} car={car} />
             ))}
           </Slider>
@@ -176,7 +191,7 @@ const sliderSettings = {
             <Col><h2 className="fw-semibold fst-italic">Unit Reguler</h2></Col>
           </Row>
           <Slider {...sliderSettings}>
-            {carsReguler.map((car, index) => (
+            {carReguler.map((car, index) => (
               <CarCard key={index} car={car} />
             ))}
           </Slider>

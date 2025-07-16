@@ -122,3 +122,37 @@ textarea.form-control-dark {
 .order-form-modal .modal-content {
     animation: fadeIn 0.5s ease-out;
 }
+
+.receipt-modal .modal-dialog {
+    margin-top: 80px;
+}
+
+.receipt-modal .modal-content {
+    max-height: calc(95vh - 80px);
+    overflow-y: auto;
+}
+
+.receipt-content {
+    padding: 20px;
+}
+
+.receipt-header {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.order-item {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.total-amount {
+    border-top: 2px solid #ddd;
+    padding-top: 15px;
+}
+
+.receipt-footer {
+    border-top: 1px dashed #ddd;
+    padding-top: 20px;
+}
