@@ -14,7 +14,13 @@ const CartButton = () => {
         const existingItemIndex = cartItems.findIndex(item => item.car.id === car.id)
 
         if (existingItemIndex !== -1) {
-            // Jika mobil sudah ada, update quantity
+            // Jika mobil sudah ada, cek apakah masih bisa ditambah
+            const existingItem = cartItems[existingItemIndex];
+            if (existingItem.quantity >= car.count) {
+                alert(`Maaf, stok mobil ${car.name} hanya tersedia ${car.count} unit`);
+                return;
+            }
+            // Jika masih tersedia, update quantity
             const updatedItems = cartItems.map((item, index) => {
                 if (index === existingItemIndex) {
                     return { ...item, quantity: item.quantity + 1 }
@@ -35,15 +41,23 @@ const CartButton = () => {
         setShowCart(true)
     }
 
-    // Ekspos fungsi handleAddToCart ke window object
+    // Fungsi untuk mereset keranjang dan kembali ke home
+    const handleResetCartAndGoHome = () => {
+        setCartItems([]);
+        setShowCart(false);
+        navigate('/');
+    }
+
+    // Ekspos fungsi handleAddToCart dan handleResetCartAndGoHome ke window object
     useEffect(() => {
         window.cartButton = {
-            handleAddToCart
+            handleAddToCart,
+            handleResetCartAndGoHome
         };
         return () => {
             delete window.cartButton;
         };
-    }, [handleAddToCart]);
+    }, [handleAddToCart, handleResetCartAndGoHome]);
 
     // Fungsi untuk menghapus item dari keranjang
     const handleRemoveFromCart = (itemId) => {
@@ -89,6 +103,7 @@ const CartButton = () => {
                 onRemove={handleRemoveFromCart}
                 onUpdateQuantity={handleUpdateQuantity}
                 onProceed={handleProceedToDriver}
+                onResetCartAndGoHome={handleResetCartAndGoHome}
             />
         </>
     );

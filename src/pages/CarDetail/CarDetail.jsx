@@ -95,7 +95,7 @@ const CarDetail = () => {
                 Anda. Dengan {dataCar.capacity} kursi yang nyaman, dan kualitas
                 VIP, mobil ini ideal untuk berbagai keperluan perjalanan Anda.
               </p>
-              <h4 className="fw-bold mb-3">Fitur Utama</h4>
+              <h4 className="fw-bold mb-3">Fasilitas :</h4>
               <ul className="list-unstyled mb-4">
                 {dataCar?.features?.map((feature, index) => (
                   <li

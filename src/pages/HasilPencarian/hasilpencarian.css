@@ -9,6 +9,17 @@
 .search-summary h4 {
     color: #2c3e50;
     font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* Styling untuk row search summary */
+.search-summary-row {
+    margin: 0 -5px;
+}
+
+.search-summary-row > [class*="col-"] {
+    padding: 0 5px;
+    margin-bottom: 10px;
 }
 
 /* Styling untuk item pencarian */
@@ -16,27 +27,43 @@
     padding: 15px;
     border-radius: 8px;
     background: #f8f9fa;
-    margin: 5px 0;
-    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80px;
 }
 
-.search-item:hover {
-    background: #e9ecef;
-}
 
 .search-item small {
     color: goldenrod !important;
     font-size: 0.9rem;
     font-weight: bold;
     letter-spacing: 0.5px;
+    margin-bottom: 5px;
+    display: block;
 }
 
 .search-item p {
     color: #2c3e50;
     font-weight: 500;
-    margin-top: 5px;
+    margin: 0;
+    word-break: break-word;
 }
 
+.search-item .form-select {
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.search-item .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
 
 /* Styling untuk badge */
 .badge {
@@ -55,108 +82,534 @@
     color: #fff;
 }
 
-/* Styling untuk card mobil */
+/* Styling untuk card mobil - Enhanced Responsive */
 .car-card {
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    position: relative;
+}
+
+.car-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    border-color: #007bff;
+}
+
+/* Card Image Container */
+.card-img-container {
+    position: relative;
+    overflow: hidden;
+    background: #f8f9fa;
 }
 
 .car-card .card-img-top {
-    height: 160px; /* Mengurangi tinggi gambar */
+    height: 220px;
     object-fit: cover;
+    transition: transform 0.4s ease;
+    width: 100%;
 }
 
+.car-card:hover .card-img-top {
+    transform: scale(1.08);
+}
+
+/* Card Body */
 .car-card .card-body {
-    padding: 15px; /* Mengurangi padding */
+    padding: 20px;
+    flex-grow: 1;
 }
 
-.car-card .card-title {
-    color: #2c3e50;
+/* Badge Styling */
+.category-badge {
+    font-size: 0.8rem;
+    padding: 6px 12px;
     font-weight: 600;
-    font-size: 1rem; /* Mengurangi ukuran font judul */
-    margin-bottom: 10px; /* Mengurangi margin bottom */
+    letter-spacing: 0.5px;
+    border-radius: 20px;
 }
 
-.features {
-    display: flex;
-    gap: 10px; /* Mengurangi gap */
-    color: #6c757d;
-    font-size: 0.85rem; /* Mengurangi ukuran font fitur */
+.availability-badge {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+    font-weight: 500;
+    border-radius: 15px;
+    white-space: nowrap;
 }
 
-.car-card .card-footer {
-    padding: 10px 15px; /* Mengurangi padding footer */
+/* Car Title */
+.car-title {
+    color: #2c3e50;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    min-height: 2.6rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-/* Styling untuk fitur mobil */
+/* Features */
 .features {
     display: flex;
     gap: 15px;
     color: #6c757d;
     font-size: 0.9rem;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
 }
 
-.features span {
+.feature-item {
     display: flex;
     align-items: center;
-}
-
-.features i {
-    margin-right: 5px;
-    font-size: 1.1rem;
-}
-
-/* Styling untuk harga */
-.price {
-    margin-top: 15px;
-}
-
-.price small {
-    display: block;
-    color: #6c757d;
-    font-size: 0.85rem;
-}
-
-.price .fw-bold {
-    color: #2c3e50;
-    font-size: 1.25rem !important;
-}
-
-/* Styling untuk tombol */
-.car-card .btn-primary {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
+    white-space: nowrap;
+    background: #f8f9fa;
+    padding: 5px 10px;
+    border-radius: 15px;
     font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    background-color: #007bff;
-    border: none;
-    transition: all 0.3s ease;
 }
 
-.car-card .btn-primary:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
+.feature-item i {
+    margin-right: 6px;
+    font-size: 1rem;
+    color: #007bff;
 }
 
-.car-card .card-footer {
+/* Price Styling */
+.price {
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.price-label {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+.price-amount {
+    color: #2c3e50;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.price-unit {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6c757d;
+}
+
+/* Card Footer */
+.card-footer-custom {
     background: transparent;
     border-top: none;
-    padding: 20px;
+    padding: 15px 20px 20px;
 }
 
-/* Responsive styling */
-@media (max-width: 768px) {
-    .search-item {
+/* Button Styling */
+.add-to-cart-btn {
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.add-to-cart-btn:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+.add-to-cart-btn:active {
+    transform: translateY(0);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsive Breakpoints for Car Cards */
+
+/* Extra Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .car-card .card-img-top {
+        height: 240px;
+    }
+    
+    .car-title {
+        font-size: 1.3rem;
+        min-height: 2.8rem;
+    }
+    
+    .price-amount {
+        font-size: 1.5rem;
+    }
+    
+    .add-to-cart-btn {
+        padding: 14px 24px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .car-card .card-img-top {
+        height: 200px;
+    }
+    
+    .car-card .card-body {
+        padding: 18px;
+    }
+    
+    .car-title {
+        font-size: 1.1rem;
+        min-height: 2.4rem;
+    }
+    
+    .price-amount {
+        font-size: 1.3rem;
+    }
+    
+    .add-to-cart-btn {
+        padding: 12px 18px;
+        font-size: 0.85rem;
+    }
+    
+    .card-footer-custom {
+        padding: 12px 18px 18px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .car-card .card-img-top {
+        height: 180px;
+    }
+    
+    .car-card .card-body {
+        padding: 16px;
+    }
+    
+    .car-title {
+        font-size: 1.05rem;
+        min-height: 2.2rem;
+        margin-bottom: 12px;
+    }
+    
+    .features {
+        gap: 10px;
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+    }
+    
+    .feature-item {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+    
+    .price-amount {
+        font-size: 1.2rem;
+    }
+    
+    .price-unit {
+        font-size: 0.8rem;
+    }
+    
+    .add-to-cart-btn {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .card-footer-custom {
+        padding: 10px 16px 16px;
+    }
+    
+    .category-badge, .availability-badge {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .car-card {
+        margin-bottom: 20px;
+        border-radius: 10px;
+    }
+    
+    .car-card .card-img-top {
+        height: 160px;
+    }
+    
+    .car-card .card-body {
+        padding: 14px;
+    }
+    
+    .car-title {
+        font-size: 1rem;
+        min-height: 2rem;
         margin-bottom: 10px;
     }
     
     .features {
-        flex-direction: column;
         gap: 8px;
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+        justify-content: center;
+    }
+    
+    .feature-item {
+        padding: 3px 6px;
+        font-size: 0.75rem;
+    }
+    
+    .price {
+        text-align: center;
+        padding-top: 8px;
+    }
+    
+    .price-amount {
+        font-size: 1.1rem;
+    }
+    
+    .price-unit {
+        font-size: 0.75rem;
+    }
+    
+    .add-to-cart-btn {
+        padding: 10px 14px;
+        font-size: 0.75rem;
+        letter-spacing: 0.3px;
+    }
+    
+    .card-footer-custom {
+        padding: 8px 14px 14px;
+    }
+    
+    .category-badge, .availability-badge {
+        font-size: 0.65rem;
+        padding: 3px 6px;
+    }
+    
+    .d-flex.justify-content-between {
+        justify-content: center !important;
+        gap: 8px;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .car-card {
+        margin-bottom: 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .car-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .car-card .card-img-top {
+        height: 140px;
+    }
+    
+    .car-card .card-body {
+        padding: 12px;
+        text-align: center;
+    }
+    
+    .car-title {
+        font-size: 0.95rem;
+        min-height: 1.8rem;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+    
+    .features {
+        gap: 6px;
+        font-size: 0.75rem;
+        margin-bottom: 8px;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .feature-item {
+        padding: 2px 5px;
+        font-size: 0.7rem;
+        justify-content: center;
+    }
+    
+    .price {
+        text-align: center;
+        padding-top: 6px;
+    }
+    
+    .price-label {
+        font-size: 0.75rem;
+    }
+    
+    .price-amount {
+        font-size: 1rem;
+        line-height: 1.1;
+    }
+    
+    .price-unit {
+        font-size: 0.7rem;
+        display: block;
+        margin-top: 2px;
+    }
+    
+    .add-to-cart-btn {
+        padding: 8px 12px;
+        font-size: 0.7rem;
+        letter-spacing: 0.2px;
+        border-radius: 6px;
+    }
+    
+    .btn-text {
+        font-size: 0.7rem;
+    }
+    
+    .card-footer-custom {
+        padding: 6px 12px 12px;
+    }
+    
+    .category-badge, .availability-badge {
+        font-size: 0.6rem;
+        padding: 2px 5px;
+        margin-bottom: 4px;
+    }
+    
+    .d-flex.justify-content-between {
+        justify-content: center !important;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    
+    .availability-badge {
+        order: 2;
+        width: 100%;
+        text-align: center;
+        margin-top: 4px;
+    }
+}
+
+/* Landscape orientation for mobile devices */
+@media (max-width: 767.98px) and (orientation: landscape) {
+    .car-card .card-img-top {
+        height: 120px;
+    }
+    
+    .car-card .card-body {
+        padding: 10px;
+    }
+    
+    .car-title {
+        font-size: 0.9rem;
+        min-height: 1.6rem;
+        margin-bottom: 6px;
+    }
+    
+    .features {
+        margin-bottom: 6px;
+        gap: 4px;
+    }
+    
+    .feature-item {
+        font-size: 0.65rem;
+        padding: 1px 4px;
+    }
+    
+    .price-amount {
+        font-size: 0.9rem;
+    }
+    
+    .add-to-cart-btn {
+        padding: 6px 10px;
+        font-size: 0.65rem;
+    }
+    
+    .card-footer-custom {
+        padding: 4px 10px 8px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .car-card .card-img-top {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Dark mode support (if needed) */
+@media (prefers-color-scheme: dark) {
+    .car-card {
+        background: #2d3748;
+        border-color: #4a5568;
+    }
+    
+    .car-title {
+        color: #e2e8f0;
+    }
+    
+    .feature-item {
+        background: #4a5568;
+        color: #e2e8f0;
+    }
+    
+    .price-amount {
+        color: #e2e8f0;
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .car-card,
+    .car-card .card-img-top,
+    .add-to-cart-btn {
+        transition: none;
+    }
+    
+    .car-card:hover {
+        transform: none;
+    }
+    
+    .car-card:hover .card-img-top {
+        transform: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    .search-summary {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .search-item {
+        background: #fff !important;
+        border: 1px solid #ddd;
     }
     
     .car-card {
-        margin-bottom: 20px;
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
     }
 }

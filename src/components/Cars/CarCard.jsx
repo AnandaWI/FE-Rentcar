@@ -27,7 +27,7 @@ const CarCard = ({ car }) => {
         <Card.Body className="p-3 d-flex flex-column justify-content-between">
           <div>
             <h5 className="fw-bold mb-1">{car.car_name}</h5>
-            <p className="text-muted mb-2">{car.capacity} Seat</p>
+            {/* <p className="text-muted mb-2">{car.capacity} Seat</p> */}
             <hr className="my-2" />
           </div>
           <div className="car-info d-flex flex-column justify-content-between align-items-start mt-2 gap-2">
@@ -35,7 +35,7 @@ const CarCard = ({ car }) => {
               className="text-muted d-flex align-items-center gap-1 flex-shrink-0"
               style={{ fontSize: "1rem" }}
             >
-              <FaUsers /> {car.capacity}
+              <FaUsers /> {car.capacity} seat
             </div>
             <div className="car-price d-flex align-items-center gap-1 fw-semibold flex-shrink-0">
               <span>
