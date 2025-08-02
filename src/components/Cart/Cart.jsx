@@ -78,10 +78,10 @@ const Cart = ({
 
       return (
         total +
-        bbm +
-        hargaDestinasi +
+        bbm * item.quantity +
+        hargaDestinasi * item.quantity +
         hargaPerHari * jumlahHari * item.quantity +
-        biayaJamJemput
+        biayaJamJemput * item.quantity
       );
     }, 0);
   };
@@ -222,136 +222,154 @@ const Cart = ({
               <p className="mt-3">Keranjang masih kosong</p>
             </div>
           ) : (
-            <div className="cart-items">
-              {items.map((item) => (
-                <Card key={item.id} className="cart-item mb-3">
-                  <Card.Body>
-                    <Row className="align-items-center">
-                      <Col md={3}>
-                        <img
-                          src={item.car.image.path}
-                          alt={item.car.name}
-                          className="cart-item-image"
-                        />
-                      </Col>
-                      <Col md={6}>
-                        <h5 className="cart-item-name">{item.car.name}</h5>
-                        <div className="cart-item-details">
-                          <p>
-                            <i className="bi bi-tag"></i> Kategori:{" "}
-                            {item.car.category.name}
-                          </p>
-                          <p>
-                            <i className="bi bi-people"></i> {item.car.capacity}{" "}
-                            Kursi
-                          </p>
-                          <p>
-                            <i className="bi bi-clock"></i> Durasi:{" "}
-                            {item.searchParams.jangkaWaktu}
-                          </p>
-                          <p>
-                            <i className="bi bi-geo-alt"></i> Destinasi:{" "}
-                            {item.searchParams.destinasi}
-                          </p>
-                          {selectedDrivers[item.id] &&
-                            selectedDrivers[item.id].length > 0 && (
-                              <p>
-                                <i className="bi bi-person"></i> Driver: &nbsp;
-                                {selectedDrivers[item.id]
-                                  .map((driver) => driver.name)
-                                  .join(", ")}
-                              </p>
-                            )}
-                          <p className="price">
-                            Rp{" "}
-                            {(
-                              item.car.rent_price *
-                              parseInt(item.searchParams.jangkaWaktu)
-                            ).toLocaleString("id-ID")}
-                            +{" "}
-                            {parseInt(
-                              item.car.destination_price
-                            ).toLocaleString("id-ID")}
-                            (Destinasi)
-                            {parseInt(
-                              item.searchParams.selisihJangkaWaktuDestinasi
-                            ) > 0 && (
-                              <>
-                                +{" "}
-                                {(
-                                  parseInt(
-                                    item.searchParams
-                                      .selisihJangkaWaktuDestinasi
-                                  ) * 100000
-                                ).toLocaleString("id-ID")}
-                                (BBM)
-                              </>
-                            )}
-                            {parseInt(item.searchParams.biayaJamJemput) > 0 && (
-                              <>
-                                +{" "}
-                                {parseInt(
-                                  item.searchParams.biayaJamJemput
-                                ).toLocaleString("id-ID")}
-                                (Biaya Jam Jemput)
-                              </>
-                            )}
-                          </p>
-                        </div>
-                      </Col>
-                      <Col md={3} className="text-end">
-                        <div className="quantity-control">
+            <>
+              <div className="cart-items">
+                {items.map((item) => (
+                  <Card key={item.id} className="cart-item mb-3">
+                    <Card.Body>
+                      <Row className="align-items-center">
+                        <Col md={3}>
+                          <img
+                            src={item.car.image.path}
+                            alt={item.car.name}
+                            className="cart-item-image"
+                          />
+                        </Col>
+                        <Col md={6}>
+                          <h5 className="cart-item-name">{item.car.name}</h5>
+                          <div className="cart-item-details">
+                            <p>
+                              <i className="bi bi-tag"></i> Kategori:{" "}
+                              {item.car.category.name}
+                            </p>
+                            <p>
+                              <i className="bi bi-people"></i>{" "}
+                              {item.car.capacity} Kursi
+                            </p>
+                            <p>
+                              <i className="bi bi-clock"></i> Durasi:{" "}
+                              {item.searchParams.jangkaWaktu}
+                            </p>
+                            <p>
+                              <i className="bi bi-geo-alt"></i> Destinasi:{" "}
+                              {item.searchParams.destinasi}
+                            </p>
+                            {selectedDrivers[item.id] &&
+                              selectedDrivers[item.id].length > 0 && (
+                                <p>
+                                  <i className="bi bi-person"></i> Driver:
+                                  &nbsp;
+                                  {selectedDrivers[item.id]
+                                    .map((driver) => driver.name)
+                                    .join(", ")}
+                                </p>
+                              )}
+                            <p className="price">
+                              Rp{" "}
+                              {(
+                                item.car.rent_price *
+                                parseInt(item.searchParams.jangkaWaktu)
+                              ).toLocaleString("id-ID")}
+                              +{" "}
+                              {parseInt(
+                                item.car.destination_price
+                              ).toLocaleString("id-ID")}
+                              (Destinasi)
+                              {parseInt(
+                                item.searchParams.selisihJangkaWaktuDestinasi
+                              ) > 0 && (
+                                <>
+                                  +{" "}
+                                  {(
+                                    parseInt(
+                                      item.searchParams
+                                        .selisihJangkaWaktuDestinasi
+                                    ) * 100000
+                                  ).toLocaleString("id-ID")}
+                                  (BBM)
+                                </>
+                              )}
+                              {parseInt(item.searchParams.biayaJamJemput) >
+                                0 && (
+                                <>
+                                  +{" "}
+                                  {parseInt(
+                                    item.searchParams.biayaJamJemput
+                                  ).toLocaleString("id-ID")}
+                                  (Biaya Jam Jemput)
+                                </>
+                              )}
+                            </p>
+                          </div>
+                        </Col>
+                        <Col md={3} className="text-end">
+                          <div className="quantity-control">
+                            <Button
+                              variant="outline-secondary"
+                              size="sm"
+                              onClick={() =>
+                                onUpdateQuantity(item.id, item.quantity - 1)
+                              }
+                              disabled={item.quantity <= 1}
+                              className="btn-sm"
+                            >
+                              <i className="bi bi-dash"></i>
+                            </Button>
+                            <span className="mx-2">{item.quantity}</span>
+                            <Button
+                              variant="outline-secondary"
+                              size="sm"
+                              onClick={() =>
+                                onUpdateQuantity(item.id, item.quantity + 1)
+                              }
+                              disabled={item.quantity >= item.car.count}
+                              className="btn-sm"
+                            >
+                              <i className="bi bi-plus"></i>
+                            </Button>
+                          </div>
                           <Button
-                            variant="outline-secondary"
-                            size="sm"
-                            onClick={() =>
-                              onUpdateQuantity(item.id, item.quantity - 1)
-                            }
-                            disabled={item.quantity <= 1}
-                            className="btn-sm"
-                          >
-                            <i className="bi bi-dash"></i>
-                          </Button>
-                          <span className="mx-2">{item.quantity}</span>
-                          <Button
-                            variant="outline-secondary"
-                            size="sm"
-                            onClick={() =>
-                              onUpdateQuantity(item.id, item.quantity + 1)
-                            }
-                            disabled={item.quantity >= item.car.count}
-                            className="btn-sm"
-                          >
-                            <i className="bi bi-plus"></i>
-                          </Button>
-                        </div>
-                        <Button
-                          variant="danger"
-                          size="sm"
-                          className="mt-2 btn-sm"
-                          onClick={() => handleRemove(item.id)}
-                        >
-                          <i className="bi bi-trash"></i> Hapus
-                        </Button>
-                        {item.car.category.id === 1 && (
-                          <Button
-                            variant="success"
+                            variant="danger"
                             size="sm"
                             className="mt-2 btn-sm"
-                            onClick={() =>
-                              handleShowDriverModal(item, item.quantity)
-                            }
+                            onClick={() => handleRemove(item.id)}
                           >
-                            <i className="bi bi-person-plus"></i> Pilih{" "}
-                            {item.quantity} Driver
+                            <i className="bi bi-trash"></i> Hapus
                           </Button>
-                        )}
-                      </Col>
-                    </Row>
-                  </Card.Body>
-                </Card>
-              ))}
-            </div>
+                          {item.car.category.id === 1 && (
+                            <Button
+                              variant="success"
+                              size="sm"
+                              className="mt-2 btn-sm"
+                              onClick={() =>
+                                handleShowDriverModal(item, item.quantity)
+                              }
+                            >
+                              <i className="bi bi-person-plus"></i> Pilih{" "}
+                              {item.quantity} Driver
+                            </Button>
+                          )}
+                        </Col>
+                      </Row>
+                    </Card.Body>
+                  </Card>
+                ))}
+              </div>
+              {/* Tulisan tambahan biaya jam penjemputan */}
+              <div className="mt-3 text-center">
+                <p
+                  style={{
+                    color: "red",
+                    fontStyle: "italic",
+                    fontSize: "0.85rem",
+                    margin: 0,
+                  }}
+                >
+                  *Tambahan biaya penjemputan mulai pukul 05.00 s/d 01.00
+                  sebesar Rp50.000 dan bertambah Rp50.000 per jam lebih awal*
+                </p>
+              </div>
+            </>
           )}
         </Modal.Body>
         <Modal.Footer className="cart-footer">

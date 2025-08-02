@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, Spinner } from "react-bootstrap";
 import "./orderform.css";
 import axiosInstance from "../../core/axiosinstance";
 
@@ -14,6 +14,7 @@ const OrderForm = ({
   onResetCartAndGoHome, // ✅ Tambahkan prop baru
 }) => {
   const [showReceipt, setShowReceipt] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // ✅ Tambahkan state loading
 
   const [formData, setFormData] = useState({
     nama: "",
@@ -41,6 +42,7 @@ const OrderForm = ({
   const resetOrderForm = () => {
     resetFormData();
     setShowReceipt(false);
+    setIsLoading(false); // ✅ Reset loading state
     onHide(); // Tutup modal
     if (typeof onResetCart === "function") {
       onResetCart(); // Reset cart & selectedDrivers di parent
@@ -52,6 +54,7 @@ const OrderForm = ({
     if (show) {
       // Reset semua data ketika modal dibuka
       resetFormData();
+      setIsLoading(false); // ✅ Reset loading state
     }
   }, [show]);
 
@@ -87,10 +90,10 @@ const OrderForm = ({
 
       return (
         total +
-        bbm +
-        hargaDestinasi +
+        bbm * item.quantity +
+        hargaDestinasi * item.quantity +
         hargaPerHari * jumlahHari * item.quantity +
-        biayaJamJemput
+        biayaJamJemput * item.quantity
       );
     }, 0);
   };
@@ -209,6 +212,7 @@ const OrderForm = ({
 
   const handleBayar = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // ✅ Set loading true saat mulai proses
 
     try {
       const orderData = prepareOrderData();
@@ -226,6 +230,7 @@ const OrderForm = ({
             // ✅ Reset form setelah pembayaran berhasil
             resetFormData();
             setShowReceipt(false);
+            setIsLoading(false); // ✅ Reset loading state
             if (typeof onResetCartAndGoHome === "function") {
               onResetCartAndGoHome();
             } else {
@@ -234,21 +239,33 @@ const OrderForm = ({
           },
           onPending: function (result) {
             console.log("Payment Pending:", result);
+            setIsLoading(false); // ✅ Reset loading state
           },
           onError: function (result) {
             console.error("Payment Error:", result);
+            setIsLoading(false); // ✅ Reset loading state
             alert("Terjadi kesalahan saat memproses pembayaran");
           },
-          onClose: function () {
-            console.log("Customer closed the popup without finishing payment");
-            alert("Pembayaran dibatalkan");
+          onClose: async function () {
+            setIsLoading(false); // ✅ Reset loading state
+            const response = await axiosInstance.get(
+              `/api/close-modal/${snapToken}`
+            );
+            if (response) {
+              console.log(
+                "Customer closed the popup without finishing payment"
+              );
+              alert("Pembayaran dibatalkan");
+            }
           },
         });
       } else {
+        setIsLoading(false); // ✅ Reset loading state
         alert("Token pembayaran tidak ditemukan.");
       }
     } catch (error) {
       console.error("Error submitting order:", error);
+      setIsLoading(false); // ✅ Reset loading state
       alert("Gagal membuat pesanan. Silakan coba lagi.");
     }
   };
@@ -256,12 +273,14 @@ const OrderForm = ({
   // ✅ Handler untuk menutup modal dengan reset
   const handleModalClose = () => {
     resetFormData();
+    setIsLoading(false); // ✅ Reset loading state
     onHide();
   };
 
   // ✅ Handler untuk menutup modal struk dengan reset
   const handleReceiptClose = () => {
     resetFormData();
+    setIsLoading(false); // ✅ Reset loading state
     setShowReceipt(false);
   };
 
@@ -375,7 +394,7 @@ const OrderForm = ({
                 Batalkan
               </Button>
               <Button variant="primary" type="submit" className="flex-grow-1">
-                Konfirmasi Pembayaran
+                Selanjutnya
               </Button>
             </div>
           </Form>
@@ -434,6 +453,12 @@ const OrderForm = ({
                   <p className="mb-1">
                     Destinasi: {item.searchParams.destinasi}
                   </p>
+                  {/* ✅ Tambahkan detail destinasi */}
+                  {formData.detailDestinasi && (
+                    <p className="mb-1">
+                      Detail Destinasi: {formData.detailDestinasi}
+                    </p>
+                  )}
                   <p className="mb-1">Tanggal: {item.searchParams.tanggal}</p>
                   <p className="mb-1">
                     Jam Penjemputan: {item.searchParams.jamPenjemputan}
@@ -453,9 +478,11 @@ const OrderForm = ({
                         parseInt(item.searchParams.jangkaWaktu) *
                         item.quantity +
                       parseInt(item.searchParams.selisihJangkaWaktuDestinasi) *
-                        100000 +
-                      parseInt(item.searchParams.biayaJamJemput) +
-                      parseInt(item.car.destination_price)
+                        100000 *
+                        item.quantity +
+                      parseInt(item.searchParams.biayaJamJemput) *
+                        item.quantity +
+                      parseInt(item.car.destination_price) * item.quantity
                     ).toLocaleString("id-ID")}
                   </p>
                 </div>
@@ -481,11 +508,17 @@ const OrderForm = ({
                   <div className="text-start">
                     <strong className="text-danger">Perhatian:</strong>
                     <ul className="mb-0 mt-1" style={{ paddingLeft: "20px" }}>
-                      <li>
-                        Setelah pembayaran tidak bisa ganti jadwal/reschedule
+                      <li
+                        className="text-danger"
+                        style={{ fontStyle: "italic" }}
+                      >
+                        *Setelah pembayaran tidak bisa ganti jadwal/reschedule
                       </li>
-                      <li>
-                        Cek lagi pesanan anda sebelum melakukan pembayaran
+                      <li
+                        className="text-danger"
+                        style={{ fontStyle: "italic" }}
+                      >
+                        *Cek lagi pesanan anda sebelum melakukan pembayaran
                       </li>
                     </ul>
                   </div>
@@ -501,8 +534,26 @@ const OrderForm = ({
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleBayar}>
-            Bayar
+          <Button
+            variant="primary"
+            onClick={handleBayar}
+            disabled={isLoading} // ✅ Disable button saat loading
+          >
+            {isLoading ? (
+              <>
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                  className="me-2"
+                />
+                Memproses...
+              </>
+            ) : (
+              "Bayar"
+            )}
           </Button>
         </Modal.Footer>
       </Modal>

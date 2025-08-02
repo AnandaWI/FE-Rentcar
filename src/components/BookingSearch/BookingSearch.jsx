@@ -69,25 +69,57 @@ const BookingSearch = () => {
 
     if (selectedDest) {
       const minimalHari = parseInt(selectedDest.posibility_day);
-
       setMinJangkaWaktu(minimalHari);
 
-      // Set nama, id, dan selisih ke formData
+      // ✅ Cek apakah jangka waktu yang sudah dipilih sebelumnya masih valid
+      let updatedJangkaWaktu = formData.jangkaWaktu;
+      let updatedSelisih = formData.selisihJangkaWaktuDestinasi;
+
+      if (formData.jangkaWaktu) {
+        const currentJangkaWaktuHari = parseInt(formData.jangkaWaktu.split(" ")[0]);
+        
+        // Jika jangka waktu yang dipilih kurang dari minimal hari destinasi
+        if (currentJangkaWaktuHari < minimalHari) {
+          // Reset jangka waktu dan selisih
+          updatedJangkaWaktu = "";
+          updatedSelisih = "";
+          setError(`Destinasi ${value} membutuhkan minimal ${minimalHari} hari. Silakan pilih ulang jangka waktu.`);
+        } else {
+          // Hitung ulang selisih dengan minJangkaWaktu yang baru
+          updatedSelisih = currentJangkaWaktuHari - minimalHari;
+        }
+      }
+
+      // Set nama, id, dan data yang sudah divalidasi ke formData
       setFormData((prev) => ({
         ...prev,
         destinasi: value,
         destination_id: selectedDest.id,
+        jangkaWaktu: updatedJangkaWaktu,
+        selisihJangkaWaktuDestinasi: updatedSelisih,
       }));
     } else {
       setMinJangkaWaktu(1);
+      
+      // ✅ Jika destinasi direset, hitung ulang selisih dengan minJangkaWaktu = 1
+      let updatedSelisih = formData.selisihJangkaWaktuDestinasi;
+      if (formData.jangkaWaktu) {
+        const currentJangkaWaktuHari = parseInt(formData.jangkaWaktu.split(" ")[0]);
+        updatedSelisih = currentJangkaWaktuHari - 1;
+      }
+
       setFormData((prev) => ({
         ...prev,
         destinasi: value,
         destination_id: "",
+        selisihJangkaWaktuDestinasi: updatedSelisih,
       }));
     }
 
-    if (error) setError("");
+    // Clear error jika tidak ada masalah validasi
+    if (!selectedDest || (formData.jangkaWaktu && parseInt(formData.jangkaWaktu.split(" ")[0]) >= parseInt(selectedDest.posibility_day))) {
+      if (error && !error.includes("minimal")) setError("");
+    }
   };
 
   const handleSearch = () => {
@@ -97,6 +129,20 @@ const BookingSearch = () => {
     if (!startDate || !value || !jangkaWaktu || !kategori || !destinasi) {
       setError("Mohon isi semua informasi terlebih dahulu.");
       return;
+    }
+
+    // ✅ Validasi tambahan sebelum search
+    if (formData.destination_id) {
+      const selectedDest = destinationData.find((dest) => dest.id === formData.destination_id);
+      if (selectedDest) {
+        const jangkaWaktuHari = parseInt(jangkaWaktu.split(" ")[0]);
+        const minimalHari = parseInt(selectedDest.posibility_day);
+        
+        if (jangkaWaktuHari < minimalHari) {
+          setError(`Destinasi ${destinasi} membutuhkan minimal ${minimalHari} hari.`);
+          return;
+        }
+      }
     }
 
     const jangkaWaktuHari = parseInt(jangkaWaktu.split(" ")[0]);
@@ -120,6 +166,28 @@ const BookingSearch = () => {
       `/hasil-pencarian?available_at=${available_at}&not_available_at=${not_available_at}&kategori=${kategori}&destination_id=${formData.destination_id}`,
       { state: searchParams }
     );
+  };
+
+  // Function to calculate pickup time charge
+  const calculatePickupTimeCharge = (time) => {
+    const hour = parseInt(time.split(":")[0]);
+    
+    switch (hour) {
+      case 5:
+        return 50000;
+      case 4:
+        return 100000;
+      case 3:
+        return 150000;
+      case 2:
+        return 200000;
+      case 1:
+        return 250000;
+      case 0:
+        return 300000;
+      default:
+        return 0;
+    }
   };
 
   return (
@@ -205,6 +273,8 @@ const BookingSearch = () => {
                       { length: 7 - minJangkaWaktu + 1 },
                       (_, i) => `${i + minJangkaWaktu} Hari`
                     )}
+                    // ✅ Reset value jika jangka waktu tidak valid
+                    value={formData.jangkaWaktu}
                   />
                 </div>
                 <div className="item-search bd-none">
@@ -230,25 +300,3 @@ const BookingSearch = () => {
 };
 
 export default BookingSearch;
-
-  // Function to calculate pickup time charge
-  const calculatePickupTimeCharge = (time) => {
-    const hour = parseInt(time.split(":")[0]);
-    
-    switch (hour) {
-      case 5:
-        return 50000;
-      case 4:
-        return 100000;
-      case 3:
-        return 150000;
-      case 2:
-        return 200000;
-      case 1:
-        return 250000;
-      case 0:
-        return 300000;
-      default:
-        return 0;
-    }
-  };

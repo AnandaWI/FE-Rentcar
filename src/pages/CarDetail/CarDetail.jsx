@@ -4,7 +4,7 @@ import { FaUsers, FaCogs } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import "./cardetail.css";
 import Header from "../../components/Common/Header/Header";
-import { carsVIP, carsReguler } from "../../components/Cars/Cars";
+
 import axiosInstance from "../../core/axiosinstance";
 
 const CarDetail = () => {
