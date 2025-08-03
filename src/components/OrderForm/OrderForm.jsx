@@ -171,21 +171,23 @@ const OrderForm = ({
   const prepareOrderData = () => {
     const baseSearchParams = items[0]?.searchParams || {};
 
-    const orderDetails = items.map((item) => {
-      const detail = {
-        owner_car_type_id: item.car.id,
-      };
+    const orderDetails = items.flatMap((item) =>
+      Array.from({ length: item.quantity }, (_, index) => {
+        const detail = {
+          owner_car_type_id: item.car.id,
+        };
 
-      if (
-        selectedDrivers &&
-        selectedDrivers[item.id] &&
-        selectedDrivers[item.id].length > 0
-      ) {
-        detail.driver_id = selectedDrivers[item.id][0].id;
-      }
+        if (
+          selectedDrivers &&
+          selectedDrivers[item.id] &&
+          selectedDrivers[item.id][index]
+        ) {
+          detail.driver_id = selectedDrivers[item.id][index].id;
+        }
 
-      return detail;
-    });
+        return detail;
+      })
+    );
 
     const orderData = {
       name: formData.nama,

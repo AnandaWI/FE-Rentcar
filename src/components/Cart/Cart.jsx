@@ -32,40 +32,6 @@ const Cart = ({
   const availableAt = searchParams.get("available_at");
   const notAvailableAt = searchParams.get("not_available_at");
 
-  // useEffect(() => {
-  //   const fetchAllDrivers = async () => {
-  //     try {
-  //       const response = await axiosInstance.get(
-  //         `/api/guest/driver-availability?available_at=${availableAt}&not_available_at=${notAvailableAt}`
-  //       );
-  //       setAvailableDrivers(response.data.data);
-  //       setLoadingDrivers(false);
-  //     } catch (error) {
-  //       console.error("Error fetching drivers:", error);
-  //       setLoadingDrivers(false);
-  //     }
-  //   };
-
-  //   fetchAllDrivers();
-  // }, []);
-
-  // const calculateTotal = () => {
-  //   return items.reduce((total, item) => {
-  //     const hargaPerHari = item.car.rent_price || 0;
-  //     const hargaDestinasi = item.car.destination_price;
-  //     const jumlahHari = parseInt(item.searchParams.jangkaWaktu) || 1;
-  //     const selisihJangkaWaktuDestinasi =
-  //       item.searchParams.selisihJangkaWaktuDestinasi || 0;
-  //     const bbm = parseInt(selisihJangkaWaktuDestinasi) * 100000;
-  //     return (
-  //       total +
-  //       +bbm +
-  //       parseInt(hargaDestinasi) +
-  //       hargaPerHari * jumlahHari * item.quantity
-  //     );
-  //   }, 0);
-  // };
-
   const calculateTotal = () => {
     return items.reduce((total, item) => {
       const hargaPerHari = parseInt(item.car.rent_price) || 0;
